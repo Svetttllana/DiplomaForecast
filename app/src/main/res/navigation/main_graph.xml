@@ -10,4 +10,9 @@
         android:name="com.example.forecast_diploma.presentation.MainWeatherFragment"
         android:label="fragment_main_weather"
         tools:layout="@layout/fragment_main_weather" />
+    <fragment
+        android:id="@+id/daysWeatherFragment"
+        android:name="com.example.forecast_diploma.presentation.DaysWeatherFragment"
+        android:label="fragment_days_weather"
+        tools:layout="@layout/fragment_days_weather" />
 </navigation>

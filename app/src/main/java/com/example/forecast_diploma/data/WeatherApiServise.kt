@@ -1,5 +1,6 @@
 package com.example.forecast_diploma.data
 
+import com.example.forecast_diploma.data.model.FutureWeatherResponse
 import com.example.forecast_diploma.data.model.WeatherResponse
 import com.example.forecast_diploma.di.DataModule.Companion.API_KEY
 import com.example.forecast_diploma.di.model.WeatherModel
@@ -8,20 +9,29 @@ import retrofit2.http.GET
 
 import retrofit2.http.Query
 
-//const val API_KEY = "32b99295f5e644ecb91195115230802"
 
 
 //http://api.weatherapi.com/v1/current.json?key=32b99295f5e644ecb91195115230802&q=Minsk&aqi=no
+
+
+//http://api.weatherapi.com/v1/forecast.json?key=767cf706cf0a4b9d8dc141442232702&q=London&days=3&aqi=no&alerts=no
 
 interface WeatherApiServise {
 
 
     @GET("/v1/current.json")
-   suspend fun getCurrentWeatherbyCity(
-        @Query("key")key:String,
-        @Query("q") city:String): Response <WeatherResponse>
+    suspend fun getCurrentWeatherbyCity(
+        @Query("key") key: String,
+        @Query("q") city: String
+    ): Response<WeatherResponse>
 
 
+    @GET("/v1/forecast.json")
+    suspend fun getForecastWeatherbyCity(
+        @Query("key") key: String,
+        @Query("q") city: String,
+        @Query("days") days: String
+    ): Response<FutureWeatherResponse>
 
 
 //        @GET("data/2.5/weather")
@@ -34,7 +44,6 @@ interface WeatherApiServise {
 }
 
 
-
 //    @GET("weather")
 //    fun getCurrentWeatherData(
 //        @Query("lat") latitude: String,
@@ -43,16 +52,6 @@ interface WeatherApiServise {
 //    ):Response<WeatherResponse>
 //
 //
-
-
-
-
-
-
-
-
-
-
 
 
 //    companion object{
