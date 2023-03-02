@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.example.forecast_diploma.R
 import com.example.forecast_diploma.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +31,16 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView
         )as NavHostFragment
 
+
+
        navController  = navHostFragment.navController
 
+        binding.bottomNavigation.setupWithNavController(navController)
+
+        val btnav = AppBarConfiguration(
+            setOf(R.id.mainWeatherFragment,R.id.daysWeatherFragment)
+        )
+
+        NavigationUI.setupActionBarWithNavController(this,navController,btnav)
     }
 }
