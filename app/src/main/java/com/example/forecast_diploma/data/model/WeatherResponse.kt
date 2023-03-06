@@ -3,6 +3,7 @@ package com.example.forecast_diploma.data.model
 import com.google.gson.annotations.SerializedName
 
 data class WeatherResponse(
+    @SerializedName("bulk")
     val bulkList: List<Bulk>,
 )
 
