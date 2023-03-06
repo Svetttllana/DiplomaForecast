@@ -26,11 +26,9 @@ abstract class DataModule {
     //http:api.weatherapi.com/v1/current.json?key=32b99295f5e644ecb91195115230802&q=Minsk&aqi=no
 
     companion object{
-        private const val BASE_URL ="https://api.weatherapi.com"
-       const val API_KEY = "32b99295f5e644ecb91195115230802"
+        private const val BASE_URL ="https://api.jsonserve.com"
+      // const val API_KEY = "32b99295f5e644ecb91195115230802"
 
-        //private const val BASE_URL = "https://api.openweathermap.org/"
-//        const val API_KEY = "18a2ec2a57e36fdf22a5be425dec0414"
         @Provides
         fun provideWeatherApiServise(retrofit: Retrofit):WeatherApiServise{
             return retrofit.create(WeatherApiServise::class.java)

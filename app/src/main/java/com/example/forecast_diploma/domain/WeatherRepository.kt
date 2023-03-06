@@ -5,5 +5,5 @@ import com.example.forecast_diploma.di.model.WeatherModel
 
 interface WeatherRepository {
 
-   suspend fun getCurrentData():WeatherModel?
+   suspend fun getListCityWeather():List<WeatherModel>
 }

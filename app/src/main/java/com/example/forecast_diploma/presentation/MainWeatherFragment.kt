@@ -32,15 +32,12 @@ _binding= FragmentMainWeatherBinding.inflate(inflater,container,false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getCurrentData()
+viewModel.getListWeather()
 
         viewModel.currentWeather.observe(viewLifecycleOwner){
-            binding.tvCurrentWeather.text.toString()        }
-
-//        binding.btnProba.setOnClickListener {
-//            viewModel.getCurrentData()
-//            Log.w("JSON","respons 14")
-//        }
+            binding.btnProba.setOnClickListener { viewModel.getListWeather() }
+        }
     }
+
+
 }

@@ -6,6 +6,8 @@ data class WeatherModel(
     val region: String,
     val country: String,
     val temp_c: Double,
-    val condition: String,
-    val text: String
+   // val condition: String,
+    val text: String,
+     val icon:String,
+    val time:String
 )
