@@ -1,0 +1,264 @@
+Index: app/src/main/java/com/example/forecast_diploma/data/WeatherRepositoryImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.forecast_diploma.data\r\n\r\n\r\nimport android.util.Log\r\nimport com.example.forecast_diploma.di.DataModule.Companion.API_KEY\r\nimport com.example.forecast_diploma.di.model.FutureWeatherModel\r\nimport com.example.forecast_diploma.di.model.WeatherModel\r\nimport com.example.forecast_diploma.domain.WeatherRepository\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.withContext\r\nimport javax.inject.Inject\r\n\r\nclass WeatherRepositoryImpl @Inject constructor(\r\n    private val apiServise: WeatherApiServise\r\n) : WeatherRepository {\r\n\r\n    override suspend fun getCurrentData(): WeatherModel? {\r\n        Log.w(\"RESPONSE\", \"RESPONSE VIZVAN0\")\r\n        return withContext(Dispatchers.IO) {\r\n            val response = apiServise.getCurrentWeatherbyCity(API_KEY, \"Minsk\")\r\n            Log.w(\"RESPONSE\", response.body().toString())\r\n            response.body()?.let {\r\n                WeatherModel(\r\n                    it.location.name,\r\n                    it.location.region,\r\n                    it.location.country,\r\n                    it.current.temp_c,\r\n                    it.current.condition.text,\r\n                    it.current.condition.icon,\r\n                    it.location.localtime\r\n\r\n                )\r\n            } ?: kotlin.run { null }\r\n        }\r\n    }\r\n\r\n    override suspend fun getForecastData(): List<FutureWeatherModel> {\r\n        return withContext(Dispatchers.IO) {\r\n            val resp = apiServise.getForecastWeatherbyCity(API_KEY, \"Minsk\", \"3\")\r\n            Log.w(\"getForecastData\", resp.body().toString())\r\n            resp.body()?.forecast?.forecastday?.let {\r\n                it.map {\r\n                    FutureWeatherModel(\r\n                        it.date,\r\n                        it.day.maxtemp_c,\r\n                        it.day.mintemp_c,\r\n                        it.day.condition.text,\r\n                        it.day.condition.icon,\r\n                        it.hour[2].temp_c\r\n                    )\r\n                }\r\n\r\n            } ?: kotlin.run {\r\n                emptyList()\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n//val mapped = collection.nestedCollection . map{ outher->\r\n//    Collection2(\r\n//        collection.coll,\r\n//        listOf(NestedCollection2(outher.stringList))\r\n//\r\n//    )\r\n//}\r\n//log.w(\"mapped nested\",mapped.toString)\r\n\r\n\r\n//override suspend fun getData(): List<ItemsModel> {\r\n//\r\n//    return withContext(Dispatchers.IO) {\r\n//\r\n//        val response = apiService.getData()\r\n//        response.body()?.sampleList?.let {\r\n//            it.map {\r\n//                ItemsModel(it.description, it.imageUrl)\r\n//            }\r\n//        } ?: kotlin.run {\r\n//            emptyList()\r\n//        }\r\n//    }\r\n//}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/data/WeatherRepositoryImpl.kt b/app/src/main/java/com/example/forecast_diploma/data/WeatherRepositoryImpl.kt
+--- a/app/src/main/java/com/example/forecast_diploma/data/WeatherRepositoryImpl.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/data/WeatherRepositoryImpl.kt	(date 1678203054668)
+@@ -3,7 +3,6 @@
+ 
+ import android.util.Log
+ import com.example.forecast_diploma.di.DataModule.Companion.API_KEY
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+ import com.example.forecast_diploma.di.model.WeatherModel
+ import com.example.forecast_diploma.domain.WeatherRepository
+ import kotlinx.coroutines.Dispatchers
+@@ -34,55 +33,10 @@
+         }
+     }
+ 
+-    override suspend fun getForecastData(): List<FutureWeatherModel> {
+-        return withContext(Dispatchers.IO) {
+-            val resp = apiServise.getForecastWeatherbyCity(API_KEY, "Minsk", "3")
+-            Log.w("getForecastData", resp.body().toString())
+-            resp.body()?.forecast?.forecastday?.let {
+-                it.map {
+-                    FutureWeatherModel(
+-                        it.date,
+-                        it.day.maxtemp_c,
+-                        it.day.mintemp_c,
+-                        it.day.condition.text,
+-                        it.day.condition.icon,
+-                        it.hour[2].temp_c
+-                    )
+-                }
+ 
+-            } ?: kotlin.run {
+-                emptyList()
+-            }
+-        }
+-    }
+ }
+ 
+ 
+ 
+-
+-//val mapped = collection.nestedCollection . map{ outher->
+-//    Collection2(
+-//        collection.coll,
+-//        listOf(NestedCollection2(outher.stringList))
+-//
+-//    )
+-//}
+-//log.w("mapped nested",mapped.toString)
+-
+-
+-//override suspend fun getData(): List<ItemsModel> {
+-//
+-//    return withContext(Dispatchers.IO) {
+-//
+-//        val response = apiService.getData()
+-//        response.body()?.sampleList?.let {
+-//            it.map {
+-//                ItemsModel(it.description, it.imageUrl)
+-//            }
+-//        } ?: kotlin.run {
+-//            emptyList()
+-//        }
+-//    }
+-//}
+ 
+ 
+Index: app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.forecast_diploma.presentation\r\n\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport com.example.forecast_diploma.R\r\nimport com.example.forecast_diploma.databinding.FragmentDaysWeatherBinding\r\nimport com.example.forecast_diploma.databinding.FragmentMainWeatherBinding\r\nimport com.example.forecast_diploma.di.model.FutureWeatherModel\r\nimport com.example.forecast_diploma.di.model.WeatherModel\r\nimport com.example.forecast_diploma.presentation.adapter.DaysWeatherAdapter\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass DaysWeatherFragment : Fragment() {\r\n\r\n    private var _binding: FragmentDaysWeatherBinding? = null\r\n    private val binding: FragmentDaysWeatherBinding get() = _binding!!\r\n    private lateinit var daysAdapter: DaysWeatherAdapter\r\n    private val viewModel: DaysWeatherViewModel by viewModels()\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n\r\n        _binding = FragmentDaysWeatherBinding.inflate(inflater)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        daysAdapter = DaysWeatherAdapter()\r\n        binding.recyclerView.layoutManager = LinearLayoutManager(context)\r\n        binding.recyclerView.adapter = daysAdapter\r\n\r\nviewModel.getForecastData()\r\n    viewModel.days.observe(viewLifecycleOwner){\r\n        daysAdapter.submitList(it as List<FutureWeatherModel>)\r\n    }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherFragment.kt b/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherFragment.kt
+--- a/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherFragment.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherFragment.kt	(date 1678203054569)
+@@ -7,12 +7,8 @@
+ import android.view.ViewGroup
+ import androidx.fragment.app.viewModels
+ import androidx.recyclerview.widget.LinearLayoutManager
+-import com.example.forecast_diploma.R
+ import com.example.forecast_diploma.databinding.FragmentDaysWeatherBinding
+-import com.example.forecast_diploma.databinding.FragmentMainWeatherBinding
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+-import com.example.forecast_diploma.di.model.WeatherModel
+-import com.example.forecast_diploma.presentation.adapter.DaysWeatherAdapter
++import com.example.forecast_diploma.presentation.adapter.ListWeatherAdapter
+ import dagger.hilt.android.AndroidEntryPoint
+ 
+ @AndroidEntryPoint
+@@ -20,7 +16,7 @@
+ 
+     private var _binding: FragmentDaysWeatherBinding? = null
+     private val binding: FragmentDaysWeatherBinding get() = _binding!!
+-    private lateinit var daysAdapter: DaysWeatherAdapter
++    private lateinit var daysAdapter: ListWeatherAdapter
+     private val viewModel: DaysWeatherViewModel by viewModels()
+ 
+     override fun onCreateView(
+@@ -35,7 +31,7 @@
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+ 
+-        daysAdapter = DaysWeatherAdapter()
++        daysAdapter = ListWeatherAdapter()
+         binding.recyclerView.layoutManager = LinearLayoutManager(context)
+         binding.recyclerView.adapter = daysAdapter
+ 
+Index: app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherAdapter.kt b/app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherAdapter.kt
+rename from app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherAdapter.kt
+rename to app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherAdapter.kt
+--- a/app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherAdapter.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherAdapter.kt	(date 1678203054646)
+@@ -4,13 +4,12 @@
+ import android.view.ViewGroup
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.forecast_diploma.databinding.DaysItemBinding
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+ 
+-class DaysWeatherAdapter(
++class ListWeatherAdapter(
+ 
+-) : RecyclerView.Adapter<DaysWeatherViewHolder>() {
++) : RecyclerView.Adapter<ListWeatherViewHolder>() {
+ 
+-    private var listItems = mutableListOf<FutureWeatherModel>()
++    private var listItems = mutableListOf<WeatherModel>()
+ 
+     fun submitList(list: List<FutureWeatherModel>) {
+         this.listItems.clear()
+@@ -19,16 +18,16 @@
+ 
+     }
+ 
+-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaysWeatherViewHolder {
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListWeatherViewHolder {
+ 
+         val viewBinding =
+             DaysItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+-        return DaysWeatherViewHolder(viewBinding)
++        return ListWeatherViewHolder(viewBinding)
+ 
+ 
+     }
+ 
+-    override fun onBindViewHolder(holder: DaysWeatherViewHolder, position: Int) {
++    override fun onBindViewHolder(holder: ListWeatherViewHolder, position: Int) {
+ 
+         holder.bind(listItems[position])
+     }
+Index: app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.forecast_diploma.presentation\r\n\r\nimport android.util.Log\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.viewModelScope\r\nimport com.example.forecast_diploma.di.model.FutureWeatherModel\r\nimport com.example.forecast_diploma.di.model.WeatherModel\r\nimport com.example.forecast_diploma.domain.WeatherInteractor\r\nimport dagger.hilt.android.lifecycle.HiltViewModel\r\nimport kotlinx.coroutines.launch\r\nimport javax.inject.Inject\r\n\r\n\r\n@HiltViewModel\r\nclass DaysWeatherViewModel @Inject constructor(\r\n    private val weatherInteractor: WeatherInteractor\r\n    ):ViewModel() {\r\n\r\n    private val _days = MutableLiveData<List<FutureWeatherModel>>()\r\n    val days: LiveData<List<FutureWeatherModel>> = _days\r\n\r\n\r\n\r\n    fun getForecastData(){\r\n        viewModelScope.launch {\r\n            try {\r\n                _days.value= weatherInteractor.getForecastData()\r\n\r\n            }catch (e:Exception){\r\n                Log.w(\"getForecastData\",e.message.toString())\r\n            }\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherViewModel.kt b/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherViewModel.kt
+--- a/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherViewModel.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/presentation/DaysWeatherViewModel.kt	(date 1678203054622)
+@@ -5,8 +5,6 @@
+ import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.viewModelScope
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+-import com.example.forecast_diploma.di.model.WeatherModel
+ import com.example.forecast_diploma.domain.WeatherInteractor
+ import dagger.hilt.android.lifecycle.HiltViewModel
+ import kotlinx.coroutines.launch
+Index: app/src/main/java/com/example/forecast_diploma/di/model/FutureWeatherModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/di/model/FutureWeatherModel.kt b/app/src/main/java/com/example/forecast_diploma/di/model/FutureWeatherModel.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/forecast_diploma/di/model/FutureWeatherModel.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ /dev/null	(revision 347c3a011674e94079ddd09a0d116b6706754425)
+@@ -1,17 +0,0 @@
+-package com.example.forecast_diploma.di.model
+-
+-data class FutureWeatherModel(
+-//    val city:String,
+-//    val time: Double,
+-  //  val condition: String,
+-  //  val currentTemperature:String,
+-    val date: String,
+-    val maxtemp_c:Double,
+-    val mintemp_c: Double,
+-    val text:String,
+-    val icon:String,
+-
+-    //  val hours:String
+-    val temp_c: Double,
+-
+-)
+\ No newline at end of file
+Index: app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherViewHolder.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherViewHolder.kt b/app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherViewHolder.kt
+rename from app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherViewHolder.kt
+rename to app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherViewHolder.kt
+--- a/app/src/main/java/com/example/forecast_diploma/presentation/adapter/DaysWeatherViewHolder.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/presentation/adapter/ListWeatherViewHolder.kt	(date 1678203054547)
+@@ -2,10 +2,9 @@
+ 
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.forecast_diploma.databinding.DaysItemBinding
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+ import com.squareup.picasso.Picasso
+ 
+-class DaysWeatherViewHolder(
++class ListWeatherViewHolder(
+ 
+     private var viewBinding: DaysItemBinding,
+ 
+Index: app/src/main/java/com/example/forecast_diploma/domain/WeatherRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.forecast_diploma.domain\r\n\r\nimport com.example.forecast_diploma.di.model.FutureWeatherModel\r\nimport com.example.forecast_diploma.di.model.WeatherModel\r\n\r\ninterface WeatherRepository {\r\n\r\n   suspend fun getCurrentData():WeatherModel?\r\n\r\n   suspend fun getForecastData():List<FutureWeatherModel>\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/domain/WeatherRepository.kt b/app/src/main/java/com/example/forecast_diploma/domain/WeatherRepository.kt
+--- a/app/src/main/java/com/example/forecast_diploma/domain/WeatherRepository.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/domain/WeatherRepository.kt	(date 1678203054695)
+@@ -1,6 +1,5 @@
+ package com.example.forecast_diploma.domain
+ 
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+ import com.example.forecast_diploma.di.model.WeatherModel
+ 
+ interface WeatherRepository {
+Index: app/src/main/java/com/example/forecast_diploma/domain/WeatherInteractor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.forecast_diploma.domain\r\n\r\nimport android.util.Log\r\nimport com.example.forecast_diploma.di.model.FutureWeatherModel\r\nimport com.example.forecast_diploma.di.model.WeatherModel\r\nimport javax.inject.Inject\r\n\r\nclass WeatherInteractor @Inject constructor(\r\n    private val weatherRepository: WeatherRepository\r\n) {\r\n\r\n\r\n   suspend fun getCurrentData():WeatherModel? {\r\n       Log.w(\"RESPONSE\",\"RESPONSE VIZVAN iz interactora\")\r\n        return weatherRepository.getCurrentData()\r\n    }\r\n\r\n    //ьщжет знак вопроса и не обязателен\r\n    suspend fun getForecastData():List<FutureWeatherModel>{\r\n        return weatherRepository.getForecastData()\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/forecast_diploma/domain/WeatherInteractor.kt b/app/src/main/java/com/example/forecast_diploma/domain/WeatherInteractor.kt
+--- a/app/src/main/java/com/example/forecast_diploma/domain/WeatherInteractor.kt	(revision 347c3a011674e94079ddd09a0d116b6706754425)
++++ b/app/src/main/java/com/example/forecast_diploma/domain/WeatherInteractor.kt	(date 1678203054597)
+@@ -1,7 +1,6 @@
+ package com.example.forecast_diploma.domain
+ 
+ import android.util.Log
+-import com.example.forecast_diploma.di.model.FutureWeatherModel
+ import com.example.forecast_diploma.di.model.WeatherModel
+ import javax.inject.Inject
+ 
