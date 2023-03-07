@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace 'com.example.forecast_diploma'
-    compileSdk 32
+    compileSdk 33
 
     buildFeatures{
         viewBinding = true
@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId "com.example.forecast_diploma"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -72,6 +72,10 @@ dependencies {
     //navComponents
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    //room
+    kapt "androidx.room:room-compiler:2.5.0"
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation "androidx.room:room-ktx:2.5.0"
 
 
 }
