@@ -16,15 +16,15 @@ class MainWeatherViewModel @Inject constructor(
     private val weatherInteractor: WeatherInteractor
     ) :ViewModel() {
 
-        private val _currentWeather = MutableLiveData<WeatherModel?>()
-    val currentWeather: LiveData<WeatherModel?>  = _currentWeather
+        private val _currentWeather = MutableLiveData<List<WeatherModel>>()
+    val currentWeather: LiveData<List<WeatherModel>>  = _currentWeather
 
 
-   fun getCurrentData(){
+   fun getListWeather(){
        viewModelScope.launch {
            try {
-               val listWeather =  weatherInteractor.getCurrentData()
-               _currentWeather.value= listWeather
+               val listWeather =  weatherInteractor.getListWeather()
+               _currentWeather.value = listWeather
            }catch (e:Exception){
                Log.w("getCurrentData",e.message.toString())
            }

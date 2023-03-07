@@ -26,8 +26,8 @@ abstract class DataModule {
     //http:api.weatherapi.com/v1/current.json?key=32b99295f5e644ecb91195115230802&q=Minsk&aqi=no
 
     companion object{
-        private const val BASE_URL ="https://api.weatherapi.com"
-       const val API_KEY = "767cf706cf0a4b9d8dc141442232702"
+        private const val BASE_URL ="https://api.jsonserve.com"
+      // const val API_KEY = "32b99295f5e644ecb91195115230802"
 
 
         @Provides

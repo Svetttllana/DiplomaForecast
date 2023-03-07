@@ -10,9 +10,9 @@ class WeatherInteractor @Inject constructor(
 ) {
 
 
-   suspend fun getCurrentData():WeatherModel? {
+   suspend fun getListWeather():List<WeatherModel> {
        Log.w("RESPONSE","RESPONSE VIZVAN iz interactora")
-        return weatherRepository.getCurrentData()
+        return weatherRepository.getListCityWeather()
     }
 
     //ьщжет знак вопроса и не обязателен
