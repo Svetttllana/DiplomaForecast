@@ -7,12 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.forecast_diploma.R
 import com.example.forecast_diploma.databinding.FragmentDaysWeatherBinding
-import com.example.forecast_diploma.databinding.FragmentMainWeatherBinding
-import com.example.forecast_diploma.di.model.FutureWeatherModel
-import com.example.forecast_diploma.di.model.WeatherModel
-import com.example.forecast_diploma.presentation.adapter.DaysWeatherAdapter
+import com.example.forecast_diploma.presentation.adapter.ListWeatherAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +16,7 @@ class DaysWeatherFragment : Fragment() {
 
     private var _binding: FragmentDaysWeatherBinding? = null
     private val binding: FragmentDaysWeatherBinding get() = _binding!!
-    private lateinit var daysAdapter: DaysWeatherAdapter
+
     private val viewModel: DaysWeatherViewModel by viewModels()
 
     override fun onCreateView(
@@ -35,9 +31,7 @@ class DaysWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        daysAdapter = DaysWeatherAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = daysAdapter
+
 
 //viewModel.getForecastData()
 //    viewModel.days.observe(viewLifecycleOwner){

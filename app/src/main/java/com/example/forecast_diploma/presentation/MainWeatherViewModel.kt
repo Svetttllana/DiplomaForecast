@@ -20,6 +20,10 @@ class MainWeatherViewModel @Inject constructor(
     val currentWeather: LiveData<List<WeatherModel>>  = _currentWeather
 
 
+    private val _bundle = MutableLiveData<NavigateWithBundle?>()
+    val bundle: LiveData<NavigateWithBundle?> = _bundle
+
+
    fun getListWeather(){
        viewModelScope.launch {
            try {
@@ -29,8 +33,19 @@ class MainWeatherViewModel @Inject constructor(
                Log.w("getCurrentData",e.message.toString())
            }
        }
-
     }
-
-
 }
+
+
+
+data class NavigateWithBundle(
+    val name: String,
+    val region: String,
+    val country: String,
+    val temp_c: Double,
+    // val condition: String,
+    val text: String,
+    val icon:String,
+    val time:String
+
+)
