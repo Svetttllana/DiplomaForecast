@@ -39,9 +39,9 @@ class DaysWeatherFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = daysAdapter
 
-viewModel.getForecastData()
-    viewModel.days.observe(viewLifecycleOwner){
-        daysAdapter.submitList(it as List<FutureWeatherModel>)
-    }
+//viewModel.getForecastData()
+//    viewModel.days.observe(viewLifecycleOwner){
+//        daysAdapter.submitList(it as List<FutureWeatherModel>)
+//    }
     }
 }

@@ -15,10 +15,7 @@ class WeatherInteractor @Inject constructor(
         return weatherRepository.getListCityWeather()
     }
 
-    //ьщжет знак вопроса и не обязателен
-    suspend fun getForecastData():List<FutureWeatherModel>{
-        return weatherRepository.getForecastData()
-    }
+
 
 
 }

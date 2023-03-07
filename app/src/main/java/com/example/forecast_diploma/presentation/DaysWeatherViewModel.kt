@@ -23,15 +23,4 @@ class DaysWeatherViewModel @Inject constructor(
 
 
 
-    fun getForecastData(){
-        viewModelScope.launch {
-            try {
-                _days.value= weatherInteractor.getForecastData()
-
-            }catch (e:Exception){
-                Log.w("getForecastData",e.message.toString())
-            }
-        }
-
-    }
 }
