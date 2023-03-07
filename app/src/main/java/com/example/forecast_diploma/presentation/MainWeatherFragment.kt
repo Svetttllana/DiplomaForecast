@@ -35,16 +35,15 @@ _binding= FragmentMainWeatherBinding.inflate(inflater,container,false)
 viewModel.getListWeather()
 
         viewModel.currentWeather.observe(viewLifecycleOwner) {
-            it?.let { weather ->
-                binding.tvCity.text = weather.name
-                binding.tvCondition.text = weather.text
-                binding.tvlocalTime.text = weather.localtime
-                binding.tvTemperature.text = weather.temp_c.toString()
-
-                Picasso.get().load("https:" + weather.icon).into(binding.imageWeather)
+//            it?.let { weather ->
+//                binding.tvCity.text = weather.
+//                binding.tvCondition.text = weather.text
+//                binding.tvlocalTime.text = weather.localtime
+//                binding.tvTemperature.text = weather.temp_c.toString()
+//
+//                Picasso.get().load("https:" + weather.icon).into(binding.imageWeather)
             }
         }
     }
 
 
-}

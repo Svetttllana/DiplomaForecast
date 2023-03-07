@@ -2,7 +2,6 @@ package com.example.forecast_diploma.data
 
 
 import android.util.Log
-import com.example.forecast_diploma.di.DataModule.Companion.API_KEY
 import com.example.forecast_diploma.di.model.WeatherModel
 import com.example.forecast_diploma.domain.WeatherRepository
 import kotlinx.coroutines.Dispatchers
