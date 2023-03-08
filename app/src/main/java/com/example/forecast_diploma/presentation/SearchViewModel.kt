@@ -5,10 +5,10 @@ import com.example.forecast_diploma.domain.WeatherInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class SearchViewModel @Inject constructor(
-    private val weatherInteractor: WeatherInteractor
-): ViewModel() {
+//@HiltViewModel
+//class SearchViewModel @Inject constructor(
+//    private val weatherInteractor: WeatherInteractor
+//): ViewModel() {
 //
 //    private val _item = MutableLiveData<WeatherModel>()
 //    val item : LiveData<WeatherModel> = _item
@@ -27,4 +27,4 @@ class SearchViewModel @Inject constructor(
 ////        }
 ////
 ////    }
-}
+//}
