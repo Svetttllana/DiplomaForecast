@@ -25,7 +25,6 @@ class WeatherRepositoryImpl @Inject constructor(
             Log.w("Response repoImpl", response.body()?.bulkList.toString())
             response.body()?.bulkList?.let {
                 it.map {
-
                     val weatherEntity = WeatherEntity(
                         it.current.id,
                         it.current.time,
