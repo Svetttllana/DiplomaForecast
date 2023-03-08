@@ -22,17 +22,17 @@ class WeatherRepositoryImpl @Inject constructor(
     override suspend fun getListCityWeather() {
         return withContext(Dispatchers.IO) {
             val response = apiServise.getListCityWeather()
-
-            // Log.w("Resp repoImpl", response.body()?.bulkList.toString())
+            Log.w("Response repoImpl", response.body()?.bulkList.toString())
             response.body()?.bulkList?.let {
                 it.map {
 
                     val weatherEntity = WeatherEntity(
-                        (0..999).random(),
-                        it.current.uv,
+                        it.current.id,
                         it.current.time,
                         it.current.cloud,
                         it.current.is_day,
+                        it.current.max_t,
+                        it.current.min_t,
                         it.current.temp_c,
                         it.current.temp_f,
                         it.current.vis_km,
@@ -84,14 +84,15 @@ class WeatherRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
             val it = weatherDAO.getWeatherEntity()
             it.map {
-        WeatherModel(
-            it.name,
-            it.region,
-            it.country,
-            it.temp_c,
-            it.text,
-            it.icon,
-            it.time)
+                WeatherModel(
+                    it.name,
+                    it.region,
+                    it.country,
+                    it.temp_c,
+                    it.text,
+                    it.icon,
+                    it.time
+                )
             }
 
 

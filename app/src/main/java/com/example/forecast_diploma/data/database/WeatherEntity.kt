@@ -10,14 +10,16 @@ data class WeatherEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo("id")
      val id: Int,
-    @ColumnInfo("uv")
-    val uv: Int,
     @ColumnInfo("time")
     val time: String,
     @ColumnInfo("cloud")
     val cloud: Int,
     @ColumnInfo("is_day")
     val is_day: Int,
+    @ColumnInfo("max_t")
+    val max_t:Int,
+    @ColumnInfo("min_t")
+    val min_t:Int,
     @ColumnInfo("temp_c")
     val temp_c: Double,
     @ColumnInfo("temp_f")

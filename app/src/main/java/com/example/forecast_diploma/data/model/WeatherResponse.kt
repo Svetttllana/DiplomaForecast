@@ -13,10 +13,12 @@ data class Bulk(
     )
 
 data class Current(
-    val uv: Int,
+    val id: Int,
     val time: String,
     val cloud: Int,
    val is_day: Int,
+    val max_t:Int,
+    val min_t:Int,
     val temp_c: Double,
     val temp_f: Double,
     val vis_km: Int,

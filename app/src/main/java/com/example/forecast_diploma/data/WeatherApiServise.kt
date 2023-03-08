@@ -6,11 +6,11 @@ import retrofit2.http.*
 
 //const val API_KEY = "32b99295f5e644ecb91195115230802"
 
-//https://api.jsonserve.com/UrRXCP
+//https://api.jsonserve.com/JQcL4D
 interface WeatherApiServise {
 
 
-    @GET("/UrRXCP")
+    @GET("/JQcL4D")
     suspend fun getListCityWeather(): Response<WeatherResponse>
 
 }
