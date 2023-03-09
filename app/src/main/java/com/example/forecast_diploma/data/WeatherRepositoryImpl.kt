@@ -2,14 +2,15 @@ package com.example.forecast_diploma.data
 
 
 import android.util.Log
-import androidx.lifecycle.Transformations.map
-import androidx.room.ColumnInfo
+import com.example.forecast_diploma.data.database.FavoritesEntity
 import com.example.forecast_diploma.data.database.WeatherEntity
 import com.example.forecast_diploma.data.database.dao.WeatherDAO
-import com.example.forecast_diploma.data.model.Condition
-import com.example.forecast_diploma.di.model.WeatherModel
 import com.example.forecast_diploma.domain.WeatherRepository
+import com.example.forecast_diploma.presentation.model.FavoriteModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -63,7 +64,6 @@ class WeatherRepositoryImpl @Inject constructor(
                         it.current.condition.icon,
                         it.current.condition.text,
                     )
-
                     weatherDAO.insertWeatherEntity(weatherEntity)
 
                     WeatherModel(
@@ -100,13 +100,11 @@ class WeatherRepositoryImpl @Inject constructor(
                     it.humidity
                 )
             }
-
-
         }
     }
 
     override suspend fun findWeatherByName(searchText: String): WeatherModel {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             val weatherEntity = weatherDAO.findWeatherByName(searchText)
             WeatherModel(
                 weatherEntity.name,
@@ -118,7 +116,77 @@ class WeatherRepositoryImpl @Inject constructor(
                 weatherEntity.time,
                 weatherEntity.max_t,
                 weatherEntity.min_t,
-                weatherEntity.humidity)
+                weatherEntity.humidity
+            )
+        }
+    }
+
+    override suspend fun onweatherFanClicked(name: String) {
+        return withContext(Dispatchers.IO) {
+            val favEntity = weatherDAO.findFavoriteEntityById(name)
+            weatherDAO.insertFavoritesEntity(
+                FavoritesEntity(
+                    favEntity.id,
+                    favEntity.name,
+                    favEntity.cloud,
+                    favEntity.is_day,
+                    favEntity.max_t,
+                    favEntity.min_t,
+                    favEntity.temp_c,
+                    favEntity.temp_f,
+                    favEntity.vis_km,
+                    favEntity.gust_kph,
+                    favEntity.gust_mph,
+                    favEntity.humidity,
+                    favEntity.wind_dir,
+                    favEntity.wind_kph,
+                    favEntity.wind_mph,
+                    favEntity.precip_in,
+                    favEntity.precip_mm,
+                    favEntity.vis_miles,
+                    favEntity.time_epoch,
+                    favEntity.feelslike_c,
+                    favEntity.feelslike_f,
+                    favEntity.pressure_in,
+                    favEntity.pressure_mb,
+                    favEntity.wind_degree,
+                    favEntity.name,
+                    favEntity.region,
+                    favEntity.country,
+                    favEntity.lat,
+                    favEntity.lon,
+                    favEntity.tz_id,
+                    favEntity.localtime_epoch,
+                    favEntity.localtime,
+                    favEntity.code,
+                    favEntity.icon,
+                    favEntity.text,
+                )
+            )
+
+        }
+    }
+
+    override suspend fun fetFavorites(): Flow<List<FavoriteModel>> {
+        return withContext(Dispatchers.IO) {
+            val favoritesEntity = weatherDAO.getFavoritesEntities()
+            favoritesEntity.map {
+                it.map {
+                    FavoriteModel(
+                        it.name,
+                        it.temp_c,
+                        it.text,
+                        it.icon
+                    )
+                }
+
+            }
+        }
+    }
+
+    override suspend fun deliteFavByName(name: String) {
+        return withContext(Dispatchers.IO) {
+            weatherDAO.deliteFavByName(name)
         }
     }
 }

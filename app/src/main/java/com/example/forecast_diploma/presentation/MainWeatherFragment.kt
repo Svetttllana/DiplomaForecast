@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forecast_diploma.R
 import com.example.forecast_diploma.databinding.FragmentMainWeatherBinding
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
 import com.example.forecast_diploma.presentation.adapter.ListWeatherAdapter
 import com.example.forecast_diploma.presentation.adapter.WeatherListener
 import com.example.forecast_diploma.utils.Constans.COUNTRY

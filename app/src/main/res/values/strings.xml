@@ -5,4 +5,5 @@
     <string name="current_weather">Current Weather</string>
     <string name="days_weather">Days Weather</string>
     <string name="search">Search</string>
+    <string name="city_favorite">City Favorite</string>
 </resources>

@@ -12,6 +12,6 @@ object Constans {
     const val MAX_T = "max_t"
     const val MIN_T = "min_t"
     const val HUMIDITY = "humidity"
-
+const val C ="⁰C"
 }
 

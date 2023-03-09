@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
 import com.example.forecast_diploma.domain.WeatherInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

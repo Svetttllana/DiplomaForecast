@@ -21,27 +21,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+
+    <!--    <ImageView-->
+<!--        android:id="@+id/imWeatherIcon"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="249dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tempersture"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvCityName"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+<!--        tools:src="@drawable/ic_launcher_foreground" />-->
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imWeatherIcon"
-        android:layout_width="match_parent"
-        android:layout_height="249dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/tempersture"
+        android:layout_width="369dp"
+        android:layout_height="230dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCityName"
-        app:layout_constraintVertical_bias="0.0"
-        tools:src="@drawable/ic_launcher_foreground" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <TextView
         android:id="@+id/tvMaxMin"
-        android:layout_width="154dp"
-        android:layout_height="52dp"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
         android:text="88/99"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/humidityContainer"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +66,7 @@
         android:layout_height="42dp"
         android:layout_marginBottom="184dp"
         android:text="Sunny with clouds"
-        android:textSize="20sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -126,6 +137,7 @@ android:textSize="25dp"
         android:layout_width="132dp"
         android:layout_height="33dp"
         android:text="region"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tempersture"
         app:layout_constraintHorizontal_bias="0.065"
@@ -138,12 +150,13 @@ android:textSize="25dp"
         android:layout_width="126dp"
         android:layout_height="36dp"
         android:text="country"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/region"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/date"
@@ -155,5 +168,18 @@ android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvMaxMin"
         app:layout_constraintTop_toBottomOf="@+id/condition" />
+
+
+    <ImageView
+        android:id="@+id/btnFav"
+        android:layout_width="75dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_baseline_addfav"
+        android:layout_marginBottom="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

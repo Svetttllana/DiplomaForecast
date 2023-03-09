@@ -5,7 +5,8 @@ import android.net.Uri
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecast_diploma.databinding.CiryWeatherItemBinding
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
+import com.example.forecast_diploma.utils.Constans.C
 import com.squareup.picasso.Picasso
 
 class ListWeatherViewHolder(
@@ -19,7 +20,7 @@ class ListWeatherViewHolder(
         viewBinding.tvDateandTime.text = weatherModel.time
         viewBinding.tvCondition.text = weatherModel.text
         viewBinding.CityName.text = weatherModel.name
-        viewBinding.tvTemperature.text = weatherModel.temp_c.toString()+"⁰C"
+        viewBinding.tvTemperature.text = weatherModel.temp_c.toString()+C
 
         Picasso.get().load("https:" + weatherModel.icon).into(viewBinding.imageViewicon)
 
