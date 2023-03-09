@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.forecast_diploma.databinding.FragmentSearchBinding
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,14 +30,15 @@ class SearchFragment : Fragment() {
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
-              //  viewModel.findItem(newText?: "")
+                viewModel.findItem(newText?: "")
                 return false
             }
         })
-//        viewModel.item.observe(viewLifecycleOwner) {
-//            binding.condition.text = it.text
-//            binding.textView.text = it.name
-//            Picasso.get().load("https:" + it.icon).into(binding.imageVIew)
-//        }
+        viewModel.item.observe(viewLifecycleOwner) {
+            binding.condition.text = it.text
+            binding.name.text = it.name
+            binding.temperature.text=it.temp_c.toString()+"C"
+            Picasso.get().load("https:" + it.icon).into(binding.imageVIew)
+        }
     }
 }

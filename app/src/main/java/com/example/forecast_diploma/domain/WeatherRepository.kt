@@ -7,4 +7,6 @@ interface WeatherRepository {
    suspend fun getListCityWeather()
 
    suspend fun showData():List<WeatherModel>
+
+   suspend fun findWeatherByName(searchText:String):WeatherModel
 }

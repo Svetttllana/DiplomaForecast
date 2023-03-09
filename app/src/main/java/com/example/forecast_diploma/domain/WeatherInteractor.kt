@@ -18,4 +18,8 @@ class WeatherInteractor @Inject constructor(
         return  weatherRepository.showData()
     }
 
+    suspend fun findWeather(searchText:String): WeatherModel {
+        return  weatherRepository.findWeatherByName(searchText)
+    }
+
 }

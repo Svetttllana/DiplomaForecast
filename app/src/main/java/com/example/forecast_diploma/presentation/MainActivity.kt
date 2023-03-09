@@ -38,9 +38,13 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navController)
 
         val btnav = AppBarConfiguration(
-            setOf(R.id.mainWeatherFragment,R.id.daysWeatherFragment)
+            setOf(R.id.mainWeatherFragment,R.id.searchFragment)
         )
 
         NavigationUI.setupActionBarWithNavController(this,navController,btnav)
     }
+
+
+
+
 }
