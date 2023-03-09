@@ -7,8 +7,9 @@ import com.example.forecast_diploma.databinding.CiryWeatherItemBinding
 import com.example.forecast_diploma.di.model.WeatherModel
 
 class ListWeatherAdapter(
-
+    private val weatherListener: WeatherListener
 ) : RecyclerView.Adapter<ListWeatherViewHolder>() {
+
 
     private var listItems = mutableListOf<WeatherModel>()
 
@@ -23,7 +24,7 @@ class ListWeatherAdapter(
 
         val viewBinding =
             CiryWeatherItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListWeatherViewHolder(viewBinding)
+        return ListWeatherViewHolder(weatherListener,viewBinding)
 
 
     }

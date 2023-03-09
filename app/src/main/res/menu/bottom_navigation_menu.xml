@@ -9,8 +9,8 @@ android:icon="@drawable/ic_today"
 
 
     <item
-        android:id="@+id/daysWeatherFragment"
-        android:title="@string/days_weather"
+        android:id="@+id/searchFragment"
+        android:title="@string/search"
         android:icon="@drawable/ic_7_days"
         />
 </menu>

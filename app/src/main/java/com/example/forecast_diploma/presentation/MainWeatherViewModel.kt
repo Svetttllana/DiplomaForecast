@@ -14,29 +14,55 @@ import javax.inject.Inject
 @HiltViewModel
 class MainWeatherViewModel @Inject constructor(
     private val weatherInteractor: WeatherInteractor
-    ) :ViewModel() {
+) : ViewModel() {
 
-        private val _currentWeather = MutableLiveData<List<WeatherModel>>()
-    val currentWeather: LiveData<List<WeatherModel>>  = _currentWeather
+    private val _currentWeather = MutableLiveData<List<WeatherModel>>()
+    val currentWeather: LiveData<List<WeatherModel>> = _currentWeather
 
 
     private val _bundle = MutableLiveData<WeatherBundle?>()
     val bundle: LiveData<WeatherBundle?> = _bundle
 
 
-   fun getListWeather(){
-       viewModelScope.launch {
-           try {
-            weatherInteractor.getListWeather()
-               val listWeather = weatherInteractor.showWeatherData()
-          _currentWeather.value = listWeather
-           }catch (e:Exception){
-               Log.w("getCurrentData",e.message.toString())
-           }
-       }
+    fun getListWeather() {
+        viewModelScope.launch {
+            try {
+                weatherInteractor.getListWeather()
+                val listWeather = weatherInteractor.showWeatherData()
+                _currentWeather.value = listWeather
+            } catch (e: Exception) {
+                Log.w("getCurrentData", e.message.toString())
+            }
+        }
     }
-}
 
+
+    fun elementClicked(
+        name: String,
+        region: String,
+        country: String,
+        temp_c: Double,
+        text: String,
+        icon: String,
+        time: String,
+ max_t:Int,
+      min_t:Int,
+         humidity: Int,
+    ) {
+
+        _bundle.value = WeatherBundle(
+            name,region,country,temp_c,text,icon,time, max_t, min_t, humidity
+        )
+
+
+    }
+
+
+    fun userNavigated() {
+        _bundle.value = null
+    }
+
+}
 
 
 data class WeatherBundle(
@@ -46,7 +72,10 @@ data class WeatherBundle(
     val temp_c: Double,
     // val condition: String,
     val text: String,
-    val icon:String,
-    val time:String
+    val icon: String,
+    val time: String,
+    val max_t:Int,
+    val min_t:Int,
+    val humidity: Int,
 
 )

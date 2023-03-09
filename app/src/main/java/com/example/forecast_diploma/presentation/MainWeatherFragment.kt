@@ -8,17 +8,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.forecast_diploma.R
 import com.example.forecast_diploma.databinding.FragmentMainWeatherBinding
 import com.example.forecast_diploma.di.model.WeatherModel
 import com.example.forecast_diploma.presentation.adapter.ListWeatherAdapter
+import com.example.forecast_diploma.presentation.adapter.WeatherListener
+import com.example.forecast_diploma.utils.Constans.COUNTRY
+import com.example.forecast_diploma.utils.Constans.ICON
+import com.example.forecast_diploma.utils.Constans.NAME
+import com.example.forecast_diploma.utils.Constans.REGION
+import com.example.forecast_diploma.utils.Constans.TEMP_C
+import com.example.forecast_diploma.utils.Constans.TEXT
+import com.example.forecast_diploma.utils.Constans.TIME
 import com.squareup.picasso.Picasso
 
 
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainWeatherFragment : Fragment() {
+class MainWeatherFragment : Fragment(), WeatherListener {
 
     private var _binding: FragmentMainWeatherBinding? = null
     private val binding: FragmentMainWeatherBinding get() = _binding!!
@@ -37,57 +47,53 @@ class MainWeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getListWeather()
 
-
-        weatherAdapter = ListWeatherAdapter()
+        weatherAdapter = ListWeatherAdapter(this)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter =weatherAdapter
-
+        binding.recyclerView.adapter = weatherAdapter
 
         viewModel.currentWeather.observe(viewLifecycleOwner) { listItems ->
             weatherAdapter.submitList(listItems)
         }
 
-        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
-            if (navBundle != null) {
+        viewModel.bundle.observe(viewLifecycleOwner) { weather ->
+            if (weather != null) {
                 val bundle = Bundle()
-                bundle.putString("time", navBundle.time)
-                bundle.putString("name", navBundle.name)
-                bundle.putString("country", navBundle.country)
-                bundle.putString("region", navBundle.region)
-                bundle.putString("text", navBundle.text)
-                bundle.putString("temp_c", navBundle.temp_c.toString())
-                bundle.putString("icon", navBundle.icon)
-              //  Picasso.get().load(Uri.parse( navBundle.icon)).into(binding.imageWeather)
+                bundle.putString(TIME, weather.time)
+                bundle.putString(NAME, weather.name)
+                bundle.putString(COUNTRY, weather.country)
+                bundle.putString(REGION, weather.region)
+                bundle.putString(TEXT, weather.text)
+                bundle.putString(TEMP_C, weather.temp_c.toString())
+                bundle.putString(ICON, weather.icon)
+                bundle.putString("humidity",weather.humidity.toString())
+                bundle.putString("max_t",weather.max_t.toString())
+                bundle.putString("min_t",weather.min_t.toString())
+
+                findNavController().navigate(R.id.action_mainWeatherFragment_to_currentWeatherFragment,
+                bundle)
+
+              //  viewModel.userNavigated()
             }
-          //  Picasso.get().load(Uri.parse( weatherModel.icon)).into(binding.imageViewicon)
-
-
-            viewModel.currentWeather.observe(viewLifecycleOwner) {
-//            it?.let { weather ->
-//                binding. = weather.
-//                binding.tvCondition.text = weather.text
-//                binding.tvlocalTime.text = weather.localtime
-//                binding.tvTemperature.text = weather.temp_c.toString()
-//
-//                Picasso.get().load("https:" + weather.icon).into(binding.imageWeather)
-//            }
-            }
-
-//                viewModel.currentWeather.observe(viewLifecycleOwner){
-//                    it.map {weathe ->
-//
-//                        binding.  //tvDateandTime.text = weather.time
-//                        binding.tvCondition.text = weatherModel.text
-//                        binding.CityName.text = weatherModel.name
-//                        binding.region.text = weatherModel.region
-//                        binding.tvTemperature.text = weatherModel.temp_c.toString()
-//
-//
-//                    }
-//                }
 
         }
+
+
+    }
+
+    override fun onElementClick(
+        name: String,
+        region: String,
+        country: String,
+        temp_c: Double,
+        text: String,
+        icon: String,
+        time: String,
+         max_t:Int,
+         min_t:Int,
+       humidity: Int,
+    ) {
+      viewModel.elementClicked(name, region, country, temp_c, text, icon, time,max_t, min_t, humidity)
     }
 }
 

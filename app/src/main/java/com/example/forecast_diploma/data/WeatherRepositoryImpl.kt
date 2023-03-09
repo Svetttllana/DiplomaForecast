@@ -20,6 +20,7 @@ class WeatherRepositoryImpl @Inject constructor(
 ) : WeatherRepository {
 
     override suspend fun getListCityWeather() {
+
         return withContext(Dispatchers.IO) {
             val response = apiServise.getListCityWeather()
             Log.w("Response repoImpl", response.body()?.bulkList.toString())
@@ -72,7 +73,10 @@ class WeatherRepositoryImpl @Inject constructor(
                         it.current.temp_c,
                         it.current.condition.text,
                         it.current.condition.icon,
-                        it.current.time
+                        it.current.time,
+                        it.current.max_t,
+                        it.current.min_t,
+                        it.current.humidity
                     )
                 }
             }
@@ -90,11 +94,31 @@ class WeatherRepositoryImpl @Inject constructor(
                     it.temp_c,
                     it.text,
                     it.icon,
-                    it.time
+                    it.time,
+                    it.max_t,
+                    it.min_t,
+                    it.humidity
                 )
             }
 
 
+        }
+    }
+
+    override suspend fun findWeatherByName(searchText: String): WeatherModel {
+        return withContext(Dispatchers.IO){
+            val weatherEntity = weatherDAO.findWeatherByName(searchText)
+            WeatherModel(
+                weatherEntity.name,
+                weatherEntity.region,
+                weatherEntity.country,
+                weatherEntity.temp_c,
+                weatherEntity.text,
+                weatherEntity.icon,
+                weatherEntity.time,
+                weatherEntity.max_t,
+                weatherEntity.min_t,
+                weatherEntity.humidity)
         }
     }
 }

@@ -38,8 +38,7 @@ data class WeatherEntity(
     val wind_kph: Double,
     @ColumnInfo("wind_mph")
     val wind_mph: Double,
-//    @ColumnInfo("condition")
-//    val condition: Condition,
+
     @ColumnInfo("precip_in")
     val precip_in: Int,
     @ColumnInfo("precip_mm")
