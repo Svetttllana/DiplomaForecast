@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import com.example.forecast_diploma.databinding.FragmentCurrentWeatherBinding
 import com.example.forecast_diploma.di.model.WeatherModel
 import com.example.forecast_diploma.utils.Constans.COUNTRY
+import com.example.forecast_diploma.utils.Constans.HUMIDITY
 import com.example.forecast_diploma.utils.Constans.ICON
+import com.example.forecast_diploma.utils.Constans.MAX_T
+import com.example.forecast_diploma.utils.Constans.MIN_T
 import com.example.forecast_diploma.utils.Constans.NAME
 import com.example.forecast_diploma.utils.Constans.REGION
 import com.example.forecast_diploma.utils.Constans.TEMP_C
@@ -45,10 +48,10 @@ class CurrentWeatherFragment() : Fragment() {
             val country = safeBundle.getString(COUNTRY)
             val temperature = safeBundle.getString(TEMP_C)
             val condition = safeBundle.getString(TEMP_C)
-            val icon = safeBundle.getString(ICON)
-            val max_t = safeBundle.getString("max_t")
-            val min_t = safeBundle.getString("min_t")
-            val humidity = safeBundle.getString("humidity")
+            val icon = safeBundle.getString("icon")
+            val max_t = safeBundle.getString(MAX_T)
+            val min_t = safeBundle.getString(MIN_T)
+            val humidity = safeBundle.getString(HUMIDITY)
 
             binding.tvCityName.text=name
             binding.region.text=region
@@ -59,7 +62,7 @@ class CurrentWeatherFragment() : Fragment() {
             binding.tvHumidity.text=humidity
 
             //Picasso.get().load("https:" + Uri.parse(icon)).into(binding.imWeatherIcon)
-            Picasso.get().load("https:"+ (Uri.parse(icon))).into(binding.imWeatherIcon)
+            Picasso.get().load("https:"+icon).into(binding.imWeatherIcon)
         }
 
     }
