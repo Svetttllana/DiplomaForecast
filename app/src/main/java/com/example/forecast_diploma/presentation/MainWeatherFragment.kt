@@ -12,11 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forecast_diploma.R
 import com.example.forecast_diploma.databinding.FragmentMainWeatherBinding
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
 import com.example.forecast_diploma.presentation.adapter.ListWeatherAdapter
 import com.example.forecast_diploma.presentation.adapter.WeatherListener
 import com.example.forecast_diploma.utils.Constans.COUNTRY
+import com.example.forecast_diploma.utils.Constans.HUMIDITY
 import com.example.forecast_diploma.utils.Constans.ICON
+import com.example.forecast_diploma.utils.Constans.MAX_T
+import com.example.forecast_diploma.utils.Constans.MIN_T
 import com.example.forecast_diploma.utils.Constans.NAME
 import com.example.forecast_diploma.utils.Constans.REGION
 import com.example.forecast_diploma.utils.Constans.TEMP_C
@@ -66,9 +69,9 @@ class MainWeatherFragment : Fragment(), WeatherListener {
                 bundle.putString(TEXT, weather.text)
                 bundle.putString(TEMP_C, weather.temp_c.toString())
                 bundle.putString(ICON, weather.icon)
-                bundle.putString("humidity",weather.humidity.toString())
-                bundle.putString("max_t",weather.max_t.toString())
-                bundle.putString("min_t",weather.min_t.toString())
+                bundle.putString(HUMIDITY,weather.humidity.toString())
+                bundle.putString(MAX_T,weather.max_t.toString())
+                bundle.putString(MIN_T,weather.min_t.toString())
 
                 findNavController().navigate(R.id.action_mainWeatherFragment_to_currentWeatherFragment,
                 bundle)

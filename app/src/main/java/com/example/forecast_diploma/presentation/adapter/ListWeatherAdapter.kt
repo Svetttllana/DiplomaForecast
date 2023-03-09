@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecast_diploma.databinding.CiryWeatherItemBinding
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
 
 class ListWeatherAdapter(
     private val weatherListener: WeatherListener

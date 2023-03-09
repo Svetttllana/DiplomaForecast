@@ -1,4 +1,4 @@
-package com.example.forecast_diploma.di.model
+package com.example.forecast_diploma.presentation.model
 
 data class WeatherModel(
 

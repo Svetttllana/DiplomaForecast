@@ -1,8 +1,8 @@
 package com.example.forecast_diploma.domain
 
-import android.util.Log
-import com.example.forecast_diploma.di.model.FutureWeatherModel
-import com.example.forecast_diploma.di.model.WeatherModel
+import com.example.forecast_diploma.presentation.model.FavoriteModel
+import com.example.forecast_diploma.presentation.model.WeatherModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class WeatherInteractor @Inject constructor(
@@ -20,6 +20,18 @@ class WeatherInteractor @Inject constructor(
 
     suspend fun findWeather(searchText:String): WeatherModel {
         return  weatherRepository.findWeatherByName(searchText)
+    }
+
+    suspend fun weatherFanClicked(name:String){
+        weatherRepository.onweatherFanClicked(name)
+    }
+
+    suspend fun getFavorite(): Flow<List<FavoriteModel>> {
+        return weatherRepository.fetFavorites()
+    }
+
+    suspend fun deliteFavByName(name:String){
+        return weatherRepository.deliteFavByName(name)
     }
 
 }

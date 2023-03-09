@@ -4,13 +4,19 @@
     <item
         android:id="@+id/mainWeatherFragment"
         android:title="@string/current_weather"
-android:icon="@drawable/ic_today"
+android:icon="@drawable/ic_7_days"
         />
 
 
     <item
         android:id="@+id/searchFragment"
         android:title="@string/search"
-        android:icon="@drawable/ic_7_days"
+        android:icon="@drawable/ic_baseline_manage_search_24"
         />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:title="@string/city_favorite"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        />
+
 </menu>
