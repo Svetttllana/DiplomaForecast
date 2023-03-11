@@ -34,4 +34,12 @@ class WeatherInteractor @Inject constructor(
         return weatherRepository.deliteFavByName(name)
     }
 
+    suspend fun networkAccess():Boolean{
+        return  weatherRepository.networkAccess()
+    }
+
+   suspend fun saveBlackTheme(isSave: Boolean){
+       return weatherRepository.saveBlackTheme(isSave)
+   }
+
 }

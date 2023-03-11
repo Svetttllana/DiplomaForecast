@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -42,7 +44,33 @@ class MainActivity : AppCompatActivity() {
         )
 
         NavigationUI.setupActionBarWithNavController(this,navController,btnav)
+
+   viewModel.networkAccess()
+        viewModel.network.observe(this){access->
+            if (access){
+                Toast.makeText(applicationContext,getString(R.string.connected), Toast.LENGTH_SHORT).show()
+            }else
+                Toast.makeText(applicationContext, getString(R.string.noConnected), Toast.LENGTH_LONG).show()
+        }
+
+        viewModel.saveDarkTem(false)
+        viewModel.darkTeme.observe(this){
+            darkTeme ->
+
+            if (darkTeme){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+
+
+
+
     }
+
+
 
 
 

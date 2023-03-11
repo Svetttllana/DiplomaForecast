@@ -6,4 +6,6 @@
     <string name="days_weather">Days Weather</string>
     <string name="search">Search</string>
     <string name="city_favorite">City Favorite</string>
+    <string name="connected">internet is connected</string>
+    <string name="noConnected">no Connected</string>
 </resources>

@@ -17,4 +17,8 @@ interface WeatherRepository {
    suspend fun fetFavorites(): Flow<List<FavoriteModel>>
 
    suspend fun deliteFavByName(name:String)
+
+   suspend fun networkAccess():Boolean
+
+   suspend fun saveBlackTheme(isSave: Boolean)
 }

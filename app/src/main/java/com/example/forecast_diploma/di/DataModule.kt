@@ -1,14 +1,17 @@
 package com.example.forecast_diploma.di
 
+import android.content.Context
 import android.util.Log
 
 import com.example.forecast_diploma.data.WeatherApiServise
 import com.example.forecast_diploma.data.WeatherRepositoryImpl
+import com.example.forecast_diploma.data.sharedprefs.SharedPreferencesHelper
 import com.example.forecast_diploma.domain.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,11 +26,11 @@ abstract class DataModule {
         weatherRepositoryImpl: WeatherRepositoryImpl
     ): WeatherRepository
 
-    //http:api.weatherapi.com/v1/current.json?key=32b99295f5e644ecb91195115230802&q=Minsk&aqi=no
+
 
     companion object{
         private const val BASE_URL ="https://api.jsonserve.com"
-      // const val API_KEY = "32b99295f5e644ecb91195115230802"
+        private const val SP_KEY = "SP_KEY"
 
 
         @Provides
@@ -41,11 +44,12 @@ abstract class DataModule {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-
-
-
         }
 
+        @Provides
+        fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferencesHelper {
+            return SharedPreferencesHelper(context.getSharedPreferences(SP_KEY, Context.MODE_PRIVATE))
+        }
 
     }
 
