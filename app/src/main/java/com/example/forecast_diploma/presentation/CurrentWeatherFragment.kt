@@ -29,7 +29,7 @@ class CurrentWeatherFragment() : Fragment() {
 
     private var _binding: FragmentCurrentWeatherBinding? = null
     private val binding: FragmentCurrentWeatherBinding get() = _binding!!
-  private val viewModel: CurrentWeatherViewModel by viewModels()
+    private val viewModel: CurrentWeatherViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,35 +47,27 @@ class CurrentWeatherFragment() : Fragment() {
         bundle?.let { safeBundle ->
 
             binding.date.text = safeBundle.getString(TIME)
-            //binding.tvCityName.text = safeBundle.getString(NAME)
+            binding.tvCityName.text = safeBundle.getString(NAME)
             binding.country.text = safeBundle.getString(COUNTRY)
-            binding.region.text = safeBundle.getString(REGION)
             binding.condition.text = safeBundle.getString(TEXT)
             val icon = safeBundle.getString(ICON)
-            Picasso.get().load("https:" +icon).into(binding.imWeatherIcon)
+            Picasso.get().load("https:" + safeBundle.getString(ICON)).into(binding.imWeatherIcon)
             binding.tempersture.text = safeBundle.getString(TEMP_C) + C
-            binding.tvMaxMin.text =safeBundle.getString("${MAX_T}/" + "${MIN_T}")
+            binding.tvMaxMin.text = safeBundle.getString("Max:${MAX_T}/" + "Main: ${MIN_T}")
             binding.tvHumidity.text = safeBundle.getString(HUMIDITY)
 
             val name = safeBundle.getString(NAME)
-            binding.tvCityName.text=name
+            binding.tvCityName.text = name
 
 
-            binding.btnFav.setOnClickListener{
-
-                if (name!=null){
+            binding.btnFav.setOnClickListener {
+                binding.btnFav.isSelected = !it.isSelected
+                if (name != null) {
                     viewModel.onFavClicked(name)
+
                 }
             }
-
-
-
-
-
-        //    Picasso.get().load("https:" + safeBundle.getString(ICON)).into(binding.imWeatherIcon)
         }
 
     }
-
-
 }

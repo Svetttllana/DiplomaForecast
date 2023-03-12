@@ -15,10 +15,10 @@
 
         <TextView
             android:id="@+id/tvDateandTime"
-            android:layout_width="278dp"
-            android:layout_height="32dp"
+            android:layout_width="154dp"
+            android:layout_height="20dp"
             android:text="websday 11/02/2023"
-            android:textSize="27sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.037"
@@ -56,24 +56,24 @@
 
         <TextView
             android:id="@+id/tvTemperature"
-            android:layout_width="118dp"
-            android:layout_height="81dp"
+            android:layout_width="104dp"
+            android:layout_height="86dp"
             android:gravity="center"
             android:text="25&#xb0;C"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="29sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewicon"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.666" />
+            app:layout_constraintVertical_bias="0.698" />
 
         <TextView
             android:id="@+id/CityName"
-            android:layout_width="174dp"
-            android:layout_height="40dp"
+            android:layout_width="156dp"
+            android:layout_height="42dp"
             android:layout_marginStart="118dp"
             android:text="Minsk"
             android:textAllCaps="true"

@@ -35,10 +35,10 @@ class MainViewModel @Inject constructor
         }
     }
 
-    fun saveDarkTem(isSave:Boolean){
+    fun saveDarkTem(save:Boolean){
         viewModelScope.launch {
             try {
-                weatherInteractor.saveBlackTheme(isSave)
+                weatherInteractor.saveBlackTheme(save)
                 val darkTeme = (darkTeme.value ?: false)
                 _darkTeme.value = darkTeme
             }catch (e:Exception){

@@ -203,9 +203,9 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveBlackTheme(isSave: Boolean) {
+    override suspend fun saveBlackTheme(save: Boolean) {
         withContext(Dispatchers.IO){
-            sharedPreferencesHelper.saveBlackTheme(isSave)
+            sharedPreferencesHelper.saveBlackTheme(save)
         }
     }
 }

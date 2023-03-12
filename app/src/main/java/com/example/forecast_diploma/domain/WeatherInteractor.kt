@@ -38,8 +38,8 @@ class WeatherInteractor @Inject constructor(
         return  weatherRepository.networkAccess()
     }
 
-   suspend fun saveBlackTheme(isSave: Boolean){
-       return weatherRepository.saveBlackTheme(isSave)
+   suspend fun saveBlackTheme(save: Boolean){
+       return weatherRepository.saveBlackTheme(save)
    }
 
 }
