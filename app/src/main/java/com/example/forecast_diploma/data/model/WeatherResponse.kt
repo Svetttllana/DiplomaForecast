@@ -39,7 +39,6 @@ data class Current(
     val pressure_mb: Int,
     val wind_degree:Int
 )
-
 data class Location(
     val name: String,
     val region: String,

@@ -14,5 +14,4 @@ interface WeatherListener {
          min_t:Int,
          humidity: Int,
     )
-
 }

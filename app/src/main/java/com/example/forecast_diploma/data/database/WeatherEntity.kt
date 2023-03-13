@@ -79,5 +79,4 @@ data class WeatherEntity(
     val icon: String,
     @ColumnInfo("text")
     val text: String,
-
     )

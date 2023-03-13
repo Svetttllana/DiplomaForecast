@@ -18,53 +18,53 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="169dp"
-        android:layout_height="40dp"
-        android:text=""
+        android:layout_width="296dp"
+        android:layout_height="57dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <ImageView
         android:id="@+id/imageVIew"
-        android:layout_width="196dp"
-        android:layout_height="180dp"
-
-        android:src="@drawable/ic_launcher_foreground"
+        android:layout_width="137dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="0.089" />
 
     <TextView
         android:id="@+id/condition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:layout_width="408dp"
+        android:layout_height="48dp"
+        android:textAllCaps="true"
+        android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/imageVIew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search"
-        app:layout_constraintVertical_bias="0.519" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="137dp"
         android:layout_height="120dp"
+        android:textColor="@color/black"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageVIew"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/condition"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.213" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

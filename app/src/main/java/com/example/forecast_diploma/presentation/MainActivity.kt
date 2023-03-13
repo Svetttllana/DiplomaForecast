@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,9 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,24 +28,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.fragmentContainerView
+        ) as NavHostFragment
 
-        val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView
-        )as NavHostFragment
-
-
-
-       navController  = navHostFragment.navController
+        navController = navHostFragment.navController
 
         binding.bottomNavigation.setupWithNavController(navController)
 
-        val btnav = AppBarConfiguration(
-            setOf(R.id.mainWeatherFragment,R.id.searchFragment)
-        )
+        viewModel.networkAccess()
+        viewModel.network.observe(this) { access ->
+            if (access) {
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.connected),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.noConnected),
+                    Toast.LENGTH_LONG
+                ).show()
+        }
 
-        NavigationUI.setupActionBarWithNavController(this,navController,btnav)
+        viewModel.saveDarkTem(false)
+        viewModel.darkTeme.observe(this) { darkTeme ->
+
+            if (darkTeme) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
-
-
-
-
 }

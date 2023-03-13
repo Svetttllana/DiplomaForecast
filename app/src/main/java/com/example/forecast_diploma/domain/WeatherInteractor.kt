@@ -23,7 +23,7 @@ class WeatherInteractor @Inject constructor(
     }
 
     suspend fun weatherFanClicked(name:String){
-        weatherRepository.onweatherFanClicked(name)
+        weatherRepository.weatherFanClicked(name)
     }
 
     suspend fun getFavorite(): Flow<List<FavoriteModel>> {
@@ -33,5 +33,13 @@ class WeatherInteractor @Inject constructor(
     suspend fun deliteFavByName(name:String){
         return weatherRepository.deliteFavByName(name)
     }
+
+    suspend fun networkAccess():Boolean{
+        return  weatherRepository.networkAccess()
+    }
+
+   suspend fun saveBlackTheme(save: Boolean){
+       return weatherRepository.saveBlackTheme(save)
+   }
 
 }

@@ -13,11 +13,9 @@ class CurrentWeatherViewModel @Inject constructor(
     private val weatherInteractor: WeatherInteractor
 ) :ViewModel()
 {
-
     fun onFavClicked(name:String){
         viewModelScope.launch {
            weatherInteractor.weatherFanClicked(name)
         }
     }
-
 }

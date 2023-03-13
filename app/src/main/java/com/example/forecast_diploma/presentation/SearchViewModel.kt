@@ -19,8 +19,6 @@ class SearchViewModel @Inject constructor(
     private val _item = MutableLiveData<WeatherModel>()
     val item : LiveData<WeatherModel> = _item
 
-
-
     fun findItem(searchText:String){
         viewModelScope.launch {
             try {
@@ -29,8 +27,6 @@ class SearchViewModel @Inject constructor(
             }catch (e: Exception){
                 Log.w("exception", e.message.toString())
             }
-
         }
-
     }
 }

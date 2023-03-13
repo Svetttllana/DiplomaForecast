@@ -12,14 +12,11 @@ class FavoriteViewHolder(
     private var binding: ItemFavoriteBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-
     fun bind(favModel: FavoriteModel) {
         binding.tvTemperature.text = favModel.temp_c.toString() + C
         binding.CityName.text = favModel.name
         binding.tvCondition.text = favModel.text
         Picasso.get().load("https:"+favModel.icon).into(binding.imageViewicon)
-
-
 
       binding.deliteFav.setOnClickListener{
           favListener.onDeliteClicked(favModel.name)

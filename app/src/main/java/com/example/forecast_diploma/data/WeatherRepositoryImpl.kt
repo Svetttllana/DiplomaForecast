@@ -1,10 +1,14 @@
 package com.example.forecast_diploma.data
 
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.forecast_diploma.data.database.FavoritesEntity
 import com.example.forecast_diploma.data.database.WeatherEntity
 import com.example.forecast_diploma.data.database.dao.WeatherDAO
+import com.example.forecast_diploma.data.network.InternetConnection
+import com.example.forecast_diploma.data.sharedprefs.SharedPreferencesHelper
 import com.example.forecast_diploma.domain.WeatherRepository
 import com.example.forecast_diploma.presentation.model.FavoriteModel
 import com.example.forecast_diploma.presentation.model.WeatherModel
@@ -16,7 +20,9 @@ import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val apiServise: WeatherApiServise,
-    private val weatherDAO: WeatherDAO
+    private val weatherDAO: WeatherDAO,
+    private val internetConnection: InternetConnection,
+    private val sharedPreferencesHelper: SharedPreferencesHelper
 
 ) : WeatherRepository {
 
@@ -121,7 +127,7 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun onweatherFanClicked(name: String) {
+    override suspend fun weatherFanClicked(name: String) {
         return withContext(Dispatchers.IO) {
             val favEntity = weatherDAO.findFavoriteEntityById(name)
             weatherDAO.insertFavoritesEntity(
@@ -179,7 +185,6 @@ class WeatherRepositoryImpl @Inject constructor(
                         it.icon
                     )
                 }
-
             }
         }
     }
@@ -187,6 +192,19 @@ class WeatherRepositoryImpl @Inject constructor(
     override suspend fun deliteFavByName(name: String) {
         return withContext(Dispatchers.IO) {
             weatherDAO.deliteFavByName(name)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun networkAccess(): Boolean {
+        return withContext(Dispatchers.IO){
+            internetConnection.isOnline()
+        }
+    }
+
+    override suspend fun saveBlackTheme(save: Boolean) {
+        withContext(Dispatchers.IO){
+            sharedPreferencesHelper.saveBlackTheme(save)
         }
     }
 }

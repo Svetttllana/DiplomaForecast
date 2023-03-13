@@ -12,9 +12,13 @@ interface WeatherRepository {
 
    suspend fun findWeatherByName(searchText:String): WeatherModel
 
-   suspend fun onweatherFanClicked(name:String)
+   suspend fun weatherFanClicked(name:String)
 
    suspend fun fetFavorites(): Flow<List<FavoriteModel>>
 
    suspend fun deliteFavByName(name:String)
+
+   suspend fun networkAccess():Boolean
+
+   suspend fun saveBlackTheme(save: Boolean)
 }

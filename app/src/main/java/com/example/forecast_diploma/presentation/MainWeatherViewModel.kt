@@ -45,37 +45,29 @@ class MainWeatherViewModel @Inject constructor(
         text: String,
         icon: String,
         time: String,
- max_t:Int,
-      min_t:Int,
-         humidity: Int,
+        max_t: Int,
+        min_t: Int,
+        humidity: Int,
     ) {
 
         _bundle.value = WeatherBundle(
-            name,region,country,temp_c,text,icon,time, max_t, min_t, humidity
+            name, region, country, temp_c, text, icon, time, max_t, min_t, humidity
         )
 
 
     }
 
-
-    fun userNavigated() {
-        _bundle.value = null
-    }
-
 }
-
 
 data class WeatherBundle(
     val name: String,
     val region: String,
     val country: String,
     val temp_c: Double,
-    // val condition: String,
     val text: String,
     val icon: String,
     val time: String,
-    val max_t:Int,
-    val min_t:Int,
-    val humidity: Int,
-
+    val max_t: Int,
+    val min_t: Int,
+    val humidity: Int
 )
