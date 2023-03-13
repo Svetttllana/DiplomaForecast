@@ -6,7 +6,6 @@ import retrofit2.http.*
 
 interface WeatherApiServise {
 
-
     @GET("/JQcL4D")
     suspend fun getListCityWeather(): Response<WeatherResponse>
 

@@ -26,12 +26,9 @@ abstract class DataModule {
         weatherRepositoryImpl: WeatherRepositoryImpl
     ): WeatherRepository
 
-
-
     companion object{
         private const val BASE_URL ="https://api.jsonserve.com"
         private const val SP_KEY = "SP_KEY"
-
 
         @Provides
         fun provideWeatherApiServise(retrofit: Retrofit):WeatherApiServise{

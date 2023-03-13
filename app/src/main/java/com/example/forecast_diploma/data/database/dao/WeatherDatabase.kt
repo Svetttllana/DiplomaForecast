@@ -11,9 +11,7 @@ import com.example.forecast_diploma.data.database.WeatherEntity
 abstract class WeatherDatabase: RoomDatabase() {
 
     abstract fun getWeatherDAO():WeatherDAO
-
     companion object{
-
         private const val DATABASE_NAME = "DATABASE_NAME"
         private var DB_INSTANCE:WeatherDatabase? = null
 
@@ -27,8 +25,6 @@ abstract class WeatherDatabase: RoomDatabase() {
                 )
                 .build()
                 .also { DB_INSTANCE = it }
-
         }
-
     }
 }

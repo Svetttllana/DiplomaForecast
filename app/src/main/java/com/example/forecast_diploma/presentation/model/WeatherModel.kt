@@ -1,8 +1,6 @@
 package com.example.forecast_diploma.presentation.model
 
 data class WeatherModel(
-
-
     val name: String,
     val region: String,
     val country: String,
@@ -13,6 +11,5 @@ data class WeatherModel(
     val max_t:Int,
     val min_t:Int,
     val humidity: Int,
-
 
 )

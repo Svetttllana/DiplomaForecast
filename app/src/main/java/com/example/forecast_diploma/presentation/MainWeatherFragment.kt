@@ -76,12 +76,8 @@ class MainWeatherFragment : Fragment(), WeatherListener {
                 findNavController().navigate(R.id.action_mainWeatherFragment_to_currentWeatherFragment,
                 bundle)
 
-              //  viewModel.userNavigated()
             }
-
         }
-
-
     }
 
     override fun onElementClick(

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="25dp"
-    android:backgroundTint="#B486A5DD"
+    android:backgroundTint="@color/blue"
     app:cardCornerRadius="9dp"
     app:cardElevation="0dp">
 
@@ -13,7 +13,7 @@
         android:layout_width="401dp"
         android:layout_height="match_parent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDateandTime"
             android:layout_width="154dp"
             android:layout_height="20dp"
@@ -26,7 +26,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvCondition"
             android:layout_width="152dp"
             android:layout_height="55dp"
@@ -38,26 +39,25 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewicon"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.976"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.025" />
+            app:layout_constraintVertical_bias="0.0" />
 
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTemperature"
-            android:layout_width="104dp"
-            android:layout_height="86dp"
+            android:layout_width="106dp"
+            android:layout_height="102dp"
             android:gravity="center"
             android:text="25&#xb0;C"
             android:textAlignment="center"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.698" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/CityName"
             android:layout_width="156dp"
             android:layout_height="42dp"
@@ -86,17 +86,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/maxTemp"-->
-        <!--            android:layout_width="39dp"-->
-        <!--            android:layout_height="16dp"-->
-        <!--            android:layout_marginStart="88dp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/imageViewicon"-->
-        <!--            app:layout_constraintHorizontal_bias="0.788"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/tvCondition"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintVertical_bias="0.789" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

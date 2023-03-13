@@ -19,9 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,37 +28,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView
-        )as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.fragmentContainerView
+        ) as NavHostFragment
 
-       navController  = navHostFragment.navController
+        navController = navHostFragment.navController
 
         binding.bottomNavigation.setupWithNavController(navController)
 
-        val btnav = AppBarConfiguration(
-            setOf(R.id.mainWeatherFragment,R.id.searchFragment)
-        )
-
-        NavigationUI.setupActionBarWithNavController(this,navController,btnav)
-
-   viewModel.networkAccess()
-        viewModel.network.observe(this){access->
-            if (access){
-                Toast.makeText(applicationContext,getString(R.string.connected), Toast.LENGTH_SHORT).show()
-            }else
-                Toast.makeText(applicationContext, getString(R.string.noConnected), Toast.LENGTH_LONG).show()
+        viewModel.networkAccess()
+        viewModel.network.observe(this) { access ->
+            if (access) {
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.connected),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.noConnected),
+                    Toast.LENGTH_LONG
+                ).show()
         }
 
         viewModel.saveDarkTem(false)
-        viewModel.darkTeme.observe(this){
-            darkTeme ->
+        viewModel.darkTeme.observe(this) { darkTeme ->
 
-            if (darkTeme){
+            if (darkTeme) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }else {
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-
     }
 }

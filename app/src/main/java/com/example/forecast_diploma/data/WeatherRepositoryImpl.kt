@@ -127,7 +127,7 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun onweatherFanClicked(name: String) {
+    override suspend fun weatherFanClicked(name: String) {
         return withContext(Dispatchers.IO) {
             val favEntity = weatherDAO.findFavoriteEntityById(name)
             weatherDAO.insertFavoritesEntity(
@@ -185,7 +185,6 @@ class WeatherRepositoryImpl @Inject constructor(
                         it.icon
                     )
                 }
-
             }
         }
     }

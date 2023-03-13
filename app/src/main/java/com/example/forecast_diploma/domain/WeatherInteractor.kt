@@ -23,7 +23,7 @@ class WeatherInteractor @Inject constructor(
     }
 
     suspend fun weatherFanClicked(name:String){
-        weatherRepository.onweatherFanClicked(name)
+        weatherRepository.weatherFanClicked(name)
     }
 
     suspend fun getFavorite(): Flow<List<FavoriteModel>> {

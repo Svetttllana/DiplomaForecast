@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFECECEC"
+    android:background="@color/background_current"
     tools:context=".presentation.CurrentWeatherFragment">
 
 
@@ -14,6 +12,7 @@
         android:id="@+id/cardView"
         android:layout_width="411dp"
         android:layout_height="485dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -29,95 +28,108 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imWeatherIcon"
-                android:layout_width="225dp"
-                android:layout_height="187dp"
+                android:layout_width="122dp"
+                android:layout_height="112dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintHorizontal_bias="0.017"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.463" />
+                app:layout_constraintVertical_bias="0.498" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/condition"
-                android:layout_width="229dp"
-                android:layout_height="42dp"
+                android:layout_width="205dp"
+                android:layout_height="45dp"
                 android:text="Sunny with clouds"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toTopOf="@+id/imWeatherIcon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.082"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.76" />
-
-            <TextView
-                android:id="@+id/tempersture"
-                android:layout_width="175dp"
-                android:layout_height="129dp"
-                android:text="Temperature"
-                android:textSize="40dp"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.016"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imWeatherIcon"
-                app:layout_constraintVertical_bias="0.578" />
-
-            <TextView
-                android:id="@+id/tvMaxMin"
-                android:layout_width="133dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="32dp"
-                android:text="88/99"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imWeatherIcon"
-                app:layout_constraintTop_toBottomOf="@+id/humidityContainer"
-                app:layout_constraintVertical_bias="0.065" />
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="167dp"
-                android:layout_height="32dp"
-                android:text="12.13.14"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/humidityContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.39" />
+                app:layout_constraintVertical_bias="0.763" />
 
-            <TextView
-                android:id="@+id/country"
-                android:layout_width="126dp"
-                android:layout_height="36dp"
-                android:text="country"
-                android:textSize="30sp"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tempersture"
+                android:layout_width="172dp"
+                android:layout_height="95dp"
+                android:layout_marginBottom="172dp"
+                android:text="Temperature"
+                android:textColor="@color/white"
+                android:textSize="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.912"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvMaxMin"
-                app:layout_constraintVertical_bias="0.061" />
+                app:layout_constraintHorizontal_bias="0.89"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMaxT"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:text="99"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/tempersture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.709"
+                app:layout_constraintStart_toEndOf="@+id/tvCityName"
+                app:layout_constraintTop_toBottomOf="@+id/date"
+                app:layout_constraintVertical_bias="0.504" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMinT"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="92dp"
+                android:text="88"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvMaxT"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.191"
+                app:layout_constraintStart_toEndOf="@+id/country"
+                app:layout_constraintTop_toBottomOf="@+id/date"
+                app:layout_constraintVertical_bias="0.59" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date"
+                android:layout_width="150dp"
+                android:layout_height="34dp"
+                android:text="12.13.14"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/humidityContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.938"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.043" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/country"
+                android:layout_width="137dp"
+                android:layout_height="45dp"
+                android:text="country"
+                android:textSize="35sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/tvCityName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CityName"
-                android:textSize="35sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textStyle="normal"
                 app:layout_constraintBottom_toTopOf="@+id/condition"
                 app:layout_constraintEnd_toStartOf="@+id/date"
-                app:layout_constraintHorizontal_bias="0.177"
+                app:layout_constraintHorizontal_bias="0.152"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.457" />
+                app:layout_constraintVertical_bias="0.324" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/humidityContainer"
@@ -126,29 +138,26 @@
                 android:background="@color/teal_700"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="8dp"
 
+                android:paddingHorizontal="8dp"
                 android:paddingVertical="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnFav"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.193"
-                app:layout_constraintStart_toEndOf="@+id/condition"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.165">
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imWeatherIcon">
 
                 <ImageView
                     android:id="@+id/humidityIcon"
                     android:layout_width="26dp"
                     android:layout_height="30dp"
                     android:background="#FF068370"
-
-
                     android:src="@drawable/humidity"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvHumidity"
                     android:layout_width="42dp"
                     android:layout_height="34dp"
@@ -161,17 +170,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btnFav"
+                android:layout_width="54dp"
+                android:layout_height="52dp"
+                android:background="@drawable/favorite_selected"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imWeatherIcon"
+                app:layout_constraintVertical_bias="0.79" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/btnFav"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/favorite_selected"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

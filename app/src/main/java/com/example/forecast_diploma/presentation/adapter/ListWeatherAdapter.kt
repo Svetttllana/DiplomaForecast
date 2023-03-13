@@ -10,7 +10,6 @@ class ListWeatherAdapter(
     private val weatherListener: WeatherListener
 ) : RecyclerView.Adapter<ListWeatherViewHolder>() {
 
-
     private var listItems = mutableListOf<WeatherModel>()
 
     fun submitList(list: List<WeatherModel>) {

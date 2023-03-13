@@ -16,8 +16,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor
     (
     private val weatherInteractor: WeatherInteractor
-)
-    :ViewModel() {
+) : ViewModel() {
 
     private val _network = MutableLiveData<Boolean>()
     val network: LiveData<Boolean> = _network
@@ -25,29 +24,26 @@ class MainViewModel @Inject constructor
     private val _darkTeme = MutableLiveData<Boolean>()
     val darkTeme = _darkTeme
 
-    fun networkAccess(){
+    fun networkAccess() {
         viewModelScope.launch {
             try {
-                _network.value=weatherInteractor.networkAccess()
-            }catch (e:Exception){
+                _network.value = weatherInteractor.networkAccess()
+            } catch (e: Exception) {
                 Log.w("networkAccess", e.message.toString())
             }
         }
     }
 
-    fun saveDarkTem(save:Boolean){
+    fun saveDarkTem(save: Boolean) {
         viewModelScope.launch {
             try {
                 weatherInteractor.saveBlackTheme(save)
                 val darkTeme = (darkTeme.value ?: false)
                 _darkTeme.value = darkTeme
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 Log.w("saveDarkTem", e.message.toString())
             }
 
         }
     }
-
-
-
 }
