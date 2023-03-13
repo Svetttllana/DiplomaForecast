@@ -7,5 +7,5 @@
     <string name="search">Search</string>
     <string name="city_favorite">City Favorite</string>
     <string name="connected">The internet is connected</string>
-    <string name="noConnected">The internrt is no Connected</string>
+    <string name="noConnected">The internet is no Connected</string>
 </resources>
