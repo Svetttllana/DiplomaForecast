@@ -15,5 +15,6 @@ object Constans {
     const val C = "⁰C"
     const val min = "min:"
     const val max = "max:"
+    const val HTTPS = "https:"
 }
 

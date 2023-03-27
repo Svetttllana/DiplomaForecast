@@ -17,6 +17,9 @@ interface WeatherDAO {
     @Query("SELECT * From WeatherEntity")
     fun getWeatherEntity(): List<WeatherModel>
 
+    @Query("SELECT(SELECT COUNT(*) FROM WeatherEntity) !=0")
+    fun doesItemsEntityExists():Boolean
+
     @Query("SELECT * FROM WeatherEntity WHERE name =:searchText")
     fun findWeatherByName(searchText: String): WeatherEntity
 

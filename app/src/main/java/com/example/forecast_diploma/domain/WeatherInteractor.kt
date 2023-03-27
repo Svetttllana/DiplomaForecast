@@ -14,15 +14,15 @@ class WeatherInteractor @Inject constructor(
         return weatherRepository.getListCityWeather()
     }
 
-    suspend fun showWeatherData():List<WeatherModel>{
-        return  weatherRepository.showData()
+    suspend fun showWeatherData(): List<WeatherModel> {
+        return weatherRepository.showData()
     }
 
-    suspend fun findWeather(searchText:String): WeatherModel {
-        return  weatherRepository.findWeatherByName(searchText)
+    suspend fun findWeather(searchText: String): WeatherModel {
+        return weatherRepository.findWeatherByName(searchText)
     }
 
-    suspend fun weatherFanClicked(name:String){
+    suspend fun weatherFanClicked(name: String) {
         weatherRepository.weatherFanClicked(name)
     }
 
@@ -30,16 +30,20 @@ class WeatherInteractor @Inject constructor(
         return weatherRepository.fetFavorites()
     }
 
-    suspend fun deliteFavByName(name:String){
+    suspend fun deliteFavByName(name: String) {
         return weatherRepository.deliteFavByName(name)
     }
 
-    suspend fun networkAccess():Boolean{
-        return  weatherRepository.networkAccess()
+    suspend fun networkAccess(): Boolean {
+        return weatherRepository.networkAccess()
     }
 
-   suspend fun saveBlackTheme(save: Boolean){
-       return weatherRepository.saveBlackTheme(save)
-   }
+    suspend fun saveBlackTheme() {
+        return weatherRepository.saveBlackTheme()
+    }
+
+    suspend fun checkTeme(isCheckd:Boolean) {
+        return weatherRepository.checkTeme(isCheckd)
+    }
 
 }

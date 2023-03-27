@@ -6,12 +6,16 @@ import javax.inject.Inject
 class SharedPreferencesHelper @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) {
-    fun saveBlackTheme(save: Boolean) {
-        sharedPreferences.edit().putBoolean(DARK_THEME_SAVE, save).apply()
+   suspend fun saveBlackTheme(){
+        return sharedPreferences.edit().putBoolean(DARK_THEME_SAVE, true).apply()
     }
+
+
+    fun checkTeme(isCheckd:Boolean){
+        sharedPreferences.edit().putBoolean(DARK_THEME_SAVE,isCheckd).apply()
+    }
+
     companion object {
         private const val DARK_THEME_SAVE = "Dark teme save"
-
     }
-
 }

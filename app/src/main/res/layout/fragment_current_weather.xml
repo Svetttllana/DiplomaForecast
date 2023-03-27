@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_current"
+
     tools:context=".presentation.CurrentWeatherFragment">
 
 
@@ -41,7 +42,7 @@
                 android:id="@+id/condition"
                 android:layout_width="205dp"
                 android:layout_height="45dp"
-                android:text="Sunny with clouds"
+                android:text="@string/sunny_with_clouds"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,9 +56,9 @@
                 android:layout_width="172dp"
                 android:layout_height="95dp"
                 android:layout_marginBottom="172dp"
-                android:text="Temperature"
+                android:text="@string/temperature"
                 android:textColor="@color/white"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.89"
@@ -68,7 +69,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="8dp"
-                android:text="99"
+                android:text="@string/_99"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/tempersture"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +83,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="92dp"
-                android:text="88"
+                android:text="@string/_88"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvMaxT"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +96,7 @@
                 android:id="@+id/date"
                 android:layout_width="150dp"
                 android:layout_height="34dp"
-                android:text="12.13.14"
+                android:text="@string/_12_13_14"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/humidityContainer"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +109,7 @@
                 android:id="@+id/country"
                 android:layout_width="137dp"
                 android:layout_height="45dp"
-                android:text="country"
+                android:text="@string/country"
                 android:textSize="35sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toTopOf="@+id/tvCityName"
@@ -121,7 +122,7 @@
                 android:id="@+id/tvCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CityName"
+                android:text="@string/cityname"
                 android:textSize="30sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toTopOf="@+id/condition"
@@ -147,7 +148,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imWeatherIcon">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/humidityIcon"
                     android:layout_width="26dp"
                     android:layout_height="30dp"
@@ -161,9 +162,9 @@
                     android:id="@+id/tvHumidity"
                     android:layout_width="42dp"
                     android:layout_height="34dp"
-                    android:text="60"
+                    android:text="@string/_60"
                     android:textColor="@android:color/white"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/humidityIcon"
                     app:layout_constraintStart_toStartOf="parent"
@@ -182,6 +183,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imWeatherIcon"
                 app:layout_constraintVertical_bias="0.79" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

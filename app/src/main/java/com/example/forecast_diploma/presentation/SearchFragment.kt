@@ -8,6 +8,8 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.forecast_diploma.databinding.FragmentSearchBinding
+import com.example.forecast_diploma.utils.Constans.C
+import com.example.forecast_diploma.utils.Constans.HTTPS
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,8 +39,8 @@ class SearchFragment : Fragment() {
         viewModel.item.observe(viewLifecycleOwner) {
             binding.condition.text = it.text
             binding.name.text = it.name
-            binding.temperature.text=it.temp_c.toString()+"C"
-            Picasso.get().load("https:" + it.icon).into(binding.imageVIew)
+            binding.temperature.text=it.temp_c.toString()+C
+            Picasso.get().load(HTTPS + it.icon).into(binding.imageVIew)
         }
     }
 }
