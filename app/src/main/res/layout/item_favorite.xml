@@ -1,6 +1,7 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="25dp"
@@ -17,7 +18,7 @@
             android:layout_width="152dp"
             android:layout_height="55dp"
             android:layout_marginBottom="36dp"
-            android:text="sunny"
+            android:text="@string/sunnyFav"
             android:textAlignment="gravity"
 
             android:textColor="@color/white"
@@ -27,7 +28,7 @@
             app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewicon"
             android:layout_width="128dp"
             android:layout_height="128dp"
@@ -45,7 +46,7 @@
             android:layout_width="106dp"
             android:layout_height="59dp"
             android:gravity="center"
-            android:text="25&#xb0;C"
+            android:text="@string/Fav"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -62,10 +63,10 @@
             android:layout_width="174dp"
             android:layout_height="40dp"
             android:layout_marginStart="118dp"
-            android:text="Minsk"
+            android:text="@string/minskFav"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@+id/tvCondition"
             app:layout_constraintEnd_toStartOf="@+id/imageViewicon"
             app:layout_constraintHorizontal_bias="0.634"

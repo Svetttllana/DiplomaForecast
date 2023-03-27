@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.forecast_diploma.databinding.FragmentCurrentWeatherBinding
 import com.example.forecast_diploma.utils.Constans.C
 import com.example.forecast_diploma.utils.Constans.COUNTRY
+import com.example.forecast_diploma.utils.Constans.HTTPS
 import com.example.forecast_diploma.utils.Constans.HUMIDITY
 import com.example.forecast_diploma.utils.Constans.ICON
 import com.example.forecast_diploma.utils.Constans.MAX_T
@@ -48,7 +50,7 @@ class CurrentWeatherFragment() : Fragment() {
             binding.tvCityName.text = safeBundle.getString(NAME)
             binding.country.text = safeBundle.getString(COUNTRY)
             binding.condition.text = safeBundle.getString(TEXT)
-            Picasso.get().load("https:" + safeBundle.getString(TIME)).into(binding.imWeatherIcon)
+            Picasso.get().load(HTTPS + safeBundle.getString(TIME)).into(binding.imWeatherIcon)
             binding.tempersture.text = safeBundle.getString(TEMP_C) + C
             binding.tvMaxT.text = max+ safeBundle.getString(MAX_T)
             binding.tvMinT.text = min+safeBundle.getString(MIN_T)
@@ -61,6 +63,18 @@ class CurrentWeatherFragment() : Fragment() {
                 if (name != null) {
                     viewModel.onFavClicked(name)
 
+                }
+            }
+        }
+
+        viewModel.checkTeme(false)
+        viewModel.saveDarkTem()
+        viewModel.darkTeme.observe(viewLifecycleOwner) {
+            binding.Switch.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
             }
         }

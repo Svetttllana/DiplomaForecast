@@ -8,4 +8,20 @@
     <string name="city_favorite">City Favorite</string>
     <string name="connected">The internet is connected</string>
     <string name="noConnected">The internet is no Connected</string>
+    <string name="websday_11_02_2023">websday 11/02/2023</string>
+    <string name="sunny">sunny</string>
+    <string name="_25_xb0_c">25°C</string>
+    <string name="minsk">Minsk</string>
+    <string name="sunny_with_clouds">Sunny with clouds</string>
+    <string name="temperature">Temperature</string>
+    <string name="_99">99</string>
+    <string name="_88">88</string>
+    <string name="_12_13_14">12.13.14</string>
+    <string name="country">country</string>
+    <string name="cityname">CityName</string>
+    <string name="_60">60</string>
+    <string name="sunnyFav">sunny</string>
+    <string name="Fav">25°C</string>
+    <string name="minskFav">Minsk</string>
+    <string name="switchteme">SwitchTeme</string>
 </resources>

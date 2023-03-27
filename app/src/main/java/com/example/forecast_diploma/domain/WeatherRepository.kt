@@ -20,5 +20,7 @@ interface WeatherRepository {
 
    suspend fun networkAccess():Boolean
 
-   suspend fun saveBlackTheme(save: Boolean)
+   suspend fun saveBlackTheme()
+
+   suspend fun checkTeme(isCheckd:Boolean)
 }
