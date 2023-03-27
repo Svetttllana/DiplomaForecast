@@ -13,43 +13,13 @@ import javax.inject.Inject
 @HiltViewModel
 class CurrentWeatherViewModel @Inject constructor(
     private val weatherInteractor: WeatherInteractor
-) :ViewModel()
-{
-    private val _darkTeme = MutableLiveData<Boolean>()
-    val darkTeme = _darkTeme
+) : ViewModel() {
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
 
-    fun onFavClicked(name:String){
+    fun onFavClicked(name: String) {
         viewModelScope.launch {
-           weatherInteractor.weatherFanClicked(name)
+            weatherInteractor.weatherFanClicked(name)
         }
     }
-
-
-
-    fun saveDarkTem() {
-        viewModelScope.launch {
-            try {
-                weatherInteractor.saveBlackTheme()
-            } catch (e: Exception) {
-                _error.value = e.message.toString()
-            }
-        }
-    }
-
-    fun checkTeme(isCheckd: Boolean) {
-        viewModelScope.launch {
-            try {
-                weatherInteractor.checkTeme(isCheckd)
-                val darkTeme = (darkTeme.value ?: false)
-                _darkTeme.value = darkTeme
-            } catch (e: Exception) {
-                _error.value = e.message.toString()
-            }
-        }
-    }
-
 
 }

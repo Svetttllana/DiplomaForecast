@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
 
         navController = navHostFragment.navController
-
         binding.bottomNavigation.setupWithNavController(navController)
 
         viewModel.networkAccess()
@@ -54,17 +53,33 @@ class MainActivity : AppCompatActivity() {
                 ).show()
         }
 
-//        viewModel.checkTeme(false)
-//        viewModel.saveDarkTem()
-//        viewModel.darkTeme.observe(this) {
-//            binding.Switch.setOnCheckedChangeListener { _, isChecked ->
-//                if (isChecked) {
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//                } else {
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                }
-//            }
-//        }
-
     }
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.teme_switch, menu)
+        val menuM = menu?.findItem(R.id.action_switch)
+        menuM?.let {
+            val switch = it.actionView?.findViewById<Switch>(R.id.action_switch)
+            if (switch != null) {
+                switch.isChecked = viewModel.darkTeme.value ?: false
+            }
+            switch?.setOnCheckedChangeListener { _, _ ->
+                val isCheckd = false
+                viewModel.checkTeme(isCheckd)
+                viewModel.saveDarkTem()
+            }
+            viewModel.darkTeme.observe(this) { isChecked ->
+
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+
+            }
+        }
+        return true
+    }
+
 }

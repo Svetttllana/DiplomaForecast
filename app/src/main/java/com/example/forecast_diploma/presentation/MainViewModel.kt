@@ -37,28 +37,28 @@ class MainViewModel @Inject constructor
         }
     }
 
-//
-//    fun saveDarkTem() {
-//        viewModelScope.launch {
-//            try {
-//                weatherInteractor.saveBlackTheme()
-//            } catch (e: Exception) {
-//                _error.value = e.message.toString()
-//            }
-//        }
-//    }
-//
-//    fun checkTeme(isCheckd: Boolean) {
-//        viewModelScope.launch {
-//            try {
-//                weatherInteractor.checkTeme(isCheckd)
-//                val darkTeme = (darkTeme.value ?: false)
-//                _darkTeme.value = darkTeme
-//            } catch (e: Exception) {
-//                _error.value = e.message.toString()
-//            }
-//        }
-//    }
+
+    fun saveDarkTem() {
+        viewModelScope.launch {
+            try {
+                weatherInteractor.saveBlackTheme()
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
+        }
+    }
+
+    fun checkTeme(isCheckd: Boolean) {
+        viewModelScope.launch {
+            try {
+                weatherInteractor.checkTeme(isCheckd)
+                val darkTeme = !(darkTeme.value ?: false)
+                _darkTeme.value = darkTeme
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
+        }
+    }
 
 }
 

@@ -52,8 +52,8 @@ class CurrentWeatherFragment() : Fragment() {
             binding.condition.text = safeBundle.getString(TEXT)
             Picasso.get().load(HTTPS + safeBundle.getString(TIME)).into(binding.imWeatherIcon)
             binding.tempersture.text = safeBundle.getString(TEMP_C) + C
-            binding.tvMaxT.text = max+ safeBundle.getString(MAX_T)
-            binding.tvMinT.text = min+safeBundle.getString(MIN_T)
+            binding.tvMaxT.text = max + safeBundle.getString(MAX_T)
+            binding.tvMinT.text = min + safeBundle.getString(MIN_T)
             binding.tvHumidity.text = safeBundle.getString(HUMIDITY)
 
             val name = safeBundle.getString(NAME)
@@ -67,17 +67,6 @@ class CurrentWeatherFragment() : Fragment() {
             }
         }
 
-        viewModel.checkTeme(false)
-        viewModel.saveDarkTem()
-        viewModel.darkTeme.observe(viewLifecycleOwner) {
-            binding.Switch.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
-            }
-        }
 
     }
 }
